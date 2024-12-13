@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TheFitLab - Palestra Professionale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div id="logo">
+            <span class="the">THE</span><span class="fitlab">fitlab</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#services" class="smooth-scroll">Servizi</a></li>
+                <li><a href="#about" class="smooth-scroll">Chi Siamo</a></li>
+                <li><a href="#contact" class="smooth-scroll">Contattaci</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Benvenuto in TheFitLab</h1>
+            <p>Scopri il miglior programma di allenamento per raggiungere i tuoi obiettivi.</p>
+            <a href="#services" class="btn-primary">Scopri i nostri servizi</a>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section id="services" class="section">
+        <h2>Servizi</h2>
+        <div class="service-cards">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-dumbbell service-icon"></i>
+                <h3>Allenamento Personalizzato</h3>
+                <p>Programmi su misura per ogni cliente.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-users service-icon"></i>
+                <h3>Fitness di Gruppo</h3>
+                <p>Lezioni per tutti i livelli e obiettivi.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-apple-alt service-icon"></i>
+                <h3>Programmi Nutrizionali</h3>
+                <p>Consigli dietetici per ottimizzare i risultati.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="about" class="section">
+        <h2>Chi Siamo</h2>
+        <p>TheFitLab è il tuo partner ideale per un cambiamento completo del tuo corpo e della tua mente. Offriamo un ambiente accogliente e professionale, con allenamenti personalizzati, corsi di gruppo e un piano nutrizionale adatto a ogni esigenza.</p>
+    </section>
+
+    <!-- Contattaci -->
+    <section id="contact" class="section">
+        <h2>Contattaci</h2>
+        <form id="contactForm" action="#" method="POST">
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Messaggio" required></textarea>
+            <button type="submit" class="btn-primary">Invia</button>
+        </form>
+
+        <div id="map"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 THEfitlab. Tutti i diritti riservati.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal (Popup) -->
+    <div id="offerModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Offerta Speciale!</h2>
+            <p>Iscriviti oggi e ricevi il 20% di sconto sul tuo primo mese di abbonamento!</p>
+            <button class="btn-primary">Iscriviti ora</button>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+
+        // Scroll Animato
+        document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Validazione Modulo
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.querySelector('[name="name"]').value;
+            const email = document.querySelector('[name="email"]').value;
+            const message = document.querySelector('[name="message"]').value;
+
+            if (name === '' || email === '' || message === '') {
+                alert("Tutti i campi sono obbligatori.");
+                return;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                alert("Inserisci un'email valida.");
+                return;
+            }
+
+            alert("Messaggio inviato con successo!");
+            this.reset();
+        });
+
+        // Modal per Offerta Speciale
+        setTimeout(function() {
+            document.getElementById('offerModal').style.display = 'flex';
+        }, 3000);
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('offerModal').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
